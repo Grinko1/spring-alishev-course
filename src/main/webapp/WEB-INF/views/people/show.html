@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Show person</title>
+</head>
+
+
+<body>
+
+<h1>Person detail</h1>
+<div >
+    <p th:text="${person.getName() + ', ' + person.getAge()}">VALUE</p>
+    <p th:text="${'Email: ' + person.getEmail()}">VALUE</p>
+    <p th:text="${person.getId()}">VALUE</p>
+
+</div>
+<br/>
+<hr/>
+<a  th:href="@{/people/{id}/edit (id=${person.getId()}) }">Update</a>
+<br/>
+<hr/>
+<form th:method="DELETE"  th:action="@{/people/{id} (id=${person.getId()})}" >
+    <input type="submit" value="Delete"/>
+</form>
+<br/>
+<hr/>
+</br>
+<a href="/people"> Back to the list</a>
+</br>
+<a href="goodbye">go to bye page</a>
+<div/>
+<a href="calculator?a=2&b=2&action=addition">go to calc page</a>
+<div/>
+<a href="second/exit">go to exit page</a>
+</body>
+
+</html>

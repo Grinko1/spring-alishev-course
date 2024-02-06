@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>People</title>
+</head>
+
+
+<body>
+
+<h1>all people</h1>
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a>
+</div>
+<br/>
+<hr/>
+
+<a href="people/new">Create new person</a>
+<hr/>
+<a href="/goodbye">go to bye page</a>
+<div/>
+<a href="/calculator?a=2&b=2&action=addition">go to bye page</a>
+<div/>
+<a href="/second/exit">go to exit page</a>
+</body>
+
+</html>
