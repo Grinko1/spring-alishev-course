@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Books</title>
+</head>
+
+
+<body>
+
+<h1>all book</h1>
+<div th:each="book : ${books}">
+    <a th:href="@{/book/{id}(id=${book.getId()})}" th:text="${book.getName()}">user</a>
+    <span th:text="${book.getPersonId()}"></span>
+
+
+
+</div>
+<br/>
+<hr/>
+
+<a href="book/new">Create new person</a>
+<hr/>
+
+</body>
+
+</html>

@@ -4,17 +4,25 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>People</title>
+    <title>Admin page</title>
 </head>
 
 
 <body>
 
-<h1>all people</h1>
-<div th:each="person : ${people}">
-    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a>
-    <span th:text="${person.getAge()}"></span>
+<h1>Admin page</h1>
+<div >
 
+
+    <form th:method="PATCH" th:action="@{/admin/add}">
+        <label for="person">Select the person</label>
+        <select id="person" th:object="${person}" th:field="*{id}">
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}"></option>
+
+        </select>
+        <input type="submit" value="Select admin"/>
+
+    </form>
 
 
 </div>
