@@ -1,40 +1,44 @@
 package ru.course.spring.models;
 
-import jakarta.validation.constraints.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "person")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @NotEmpty(message = "Field name should be field")
     @Size(min = 2, max = 30, message = "Name length must be between 2 and 30 characters")
+    @Column(name = "name")
     private String name;
     @Min(value = 0, message = "Age should be greater then 0")
+    @Column(name = "age")
     private int age;
-    @NotEmpty(message = "Field email should be field")
-    @Email(message = "Invalid email")
+
+    @Column(name = "email")
+    @NotEmpty(message = "Email should be field")
+    @Email
     private String email;
 
+
     //Country, City, index(6 digits)
-    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Address should be in format Country, City, index(6 digits)")
-    private String address;
 
     public Person() {
     }
 
-    public Person(int id, String name, int age, String email, String address) {
-        this.id = id;
+    public Person(String name, int age, String email) {
         this.name = name;
         this.age = age;
+
         this.email = email;
-        this.address = address;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public int getId() {
         return id;
@@ -74,7 +78,6 @@ public class Person {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", email='" + email + '\'' +
                 '}';
     }
 }
