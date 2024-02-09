@@ -7,29 +7,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.course.spring.dao.PersonDAO2;
 import ru.course.spring.models.Person;
-import ru.course.spring.services.ItemService;
 import ru.course.spring.services.PeopleService;
-import ru.course.spring.util.PersonValidator;
 
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
 
     private final PeopleService peopleService;
-
+    private final PersonDAO2 personDAO;
 
 
     @Autowired
-    public PeopleController(@Qualifier("peopleService") PeopleService peopleService
-                            ) {
+    public PeopleController(@Qualifier("peopleService") PeopleService peopleService, PersonDAO2 personDAO
+    ) {
         this.peopleService = peopleService;
 
+        this.personDAO = personDAO;
     }
 
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", peopleService.findAll());
+        personDAO.testNPlus1();
 //        itemService.findByItemName("AirPods");
 //        itemService.findByOwner(peopleService.findAll().get(0));
         peopleService.test();

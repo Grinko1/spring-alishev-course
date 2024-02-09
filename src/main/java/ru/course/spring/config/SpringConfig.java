@@ -69,19 +69,16 @@ public class SpringConfig implements WebMvcConfigurer {
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
     }
+
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("hibernate.driver_class"));
         dataSource.setUrl(environment.getRequiredProperty("hibernate.connection.url"));
         dataSource.setUsername(environment.getRequiredProperty("hibernate.connection.username"));
-        dataSource.setPassword(environment.getRequiredProperty("hibernate.connection.password"));
+//        dataSource.setPassword(environment.getRequiredProperty("hibernate.connection.password"));
         return dataSource;
     }
-//    @Bean
-//    public JdbcTemplate jdbcTemplate(){
-//        return new JdbcTemplate(dataSource());
-//    }
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
